@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Генерация коротких ссылок и сбор статистики
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Для локального запуска проекта:
 
-## Available Scripts
+`$ npm install`
 
-In the project directory, you can run:
+`$ npm run build`
 
-### `npm start`
+`$ npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Сервис будет доступен: http://localhost:3000
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Тестовое задание Гексагон
 
-### `npm test`
+### Требуется реализовать frontend часть сервиса сокращения ссылок.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Основной функционал сервиса - получение по произвольной ссылке (например https://docs.docker.com/engine/reference/commandline/attach/) короткой ссылки (http://79.143.31.216/s/7ASMU), реализующей перенаправление пользователя на исходную страницу. Это может быть удобно для отправки в SMS или Twitter, где размер сообщения ограничен. Помимо этого, пользователь, создавший укороченную ссылку, может просматривать количество переходов по этой ссылке. Эта информация будет недоступна остальным пользователям.
 
-### `npm run build`
+В итоге пользователь должен мочь зарегистрироваться на сайте, авторизоваться, создать произвольное количество сокращенных ссылок и просматривать количество переходов по каждой из них. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Система должна хранить всю информацию (о пользователях, сокращенных ссылках, количествах переходов), а также генерировать сокращенные ссылки на стороне backend-а, который уже реализован, и интерактивная документация по которому доступна по ссылке http://79.143.31.216/docs.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Frontend может состоять из нескольких страниц (главное наличие функциональности):
+<ol>
+  <li>Страница регистрации</li>
+  <li>Страница авторизации</li>
+  <li>Основная страница, реализующая следующую функциональность:</li>
+    <ol>
+      <li>Просмотр статистики по созданным ссылкам в виде таблицы</li>
+      <li>Таблица содержит минимум три столбца - короткая ссылка, исходная ссылка, количество переходов по короткой ссылке</li>
+      <li>Таблица должна иметь пагинацию, работающую на стороне сервера</li>
+      <li>Таблица должна иметь возможность сортировки по столбцам</li>
+    </ol>
+</ol>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Можно использовать любые сторонние библиотеки и фреемворки.
 
-### `npm run eject`
+В качестве результатов тестового задания ожидается ссылка на публичный репозиторий с кодом и инструкцией по запуску в файле readme.md
+Интерактивная документация по API расположена по адресу http://79.143.31.216/docs
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Бонсом будет:
+<ol>
+    <li>Возможность фильтрации по нескольким столбцам таблицы статистики одновременно</li>
+    <li>Копирование сокращенных ссылок при клике</li>
+    <li>Запуск через docker контейнер</li>
+    <li>Развернутый сервер с Вашим кодом в сети (Требуется указать ссылку в readme.md)</li>
+</ol>
