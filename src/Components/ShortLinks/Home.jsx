@@ -28,7 +28,10 @@ export default function Statistics() {
   return (
     fetching ? <Spinner className="align-self-center" animation="border" variant="info" />
       : (
-        <><div className='h-100 d-flex flex-column'><ShortForm /></div><div className='h-100 d-flex flex-column'><Table /></div></>
+        <>
+          <div className="h-100 d-flex flex-column"><ShortForm /></div>
+          <div className="h-100 d-flex flex-column"><Table /></div>
+        </>
       )
   );
 }

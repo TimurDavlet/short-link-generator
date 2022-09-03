@@ -1,3 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-indent */
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/no-unused-prop-types */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
@@ -69,8 +74,7 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { order, orderBy, onRequestSort } =
-    props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -78,8 +82,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
-        </TableCell>
+        <TableCell padding="checkbox" />
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
@@ -131,6 +134,7 @@ const EnhancedTableToolbar = (props) => {
 };
 
 EnhancedTableToolbar.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   numSelected: PropTypes.number,
 };
 
@@ -161,7 +165,7 @@ export default function EnhancedTable() {
   };
 
   const handleClick = (event, name) => {
-    navigator.clipboard.writeText(`${routes.apiPath()}/s/${name}`)
+    navigator.clipboard.writeText(`${routes.apiPath()}/s/${name}`);
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -171,7 +175,7 @@ export default function EnhancedTable() {
       newSelected = newSelected.concat(selected.slice(0));
     } else if (selectedIndex === selected.length - 1) {
       newSelected = newSelected.concat(selected.slice(0));
-    } 
+    }
     setSelected(newSelected);
   };
 
@@ -191,17 +195,15 @@ export default function EnhancedTable() {
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  const params = {linkSelected: selected[0]}
+  const params = { linkSelected: selected[0] };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
         <TableContainer>
         {selected.length > 0 && <EnhancedTableToolbar {...params} />}
-        
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
@@ -234,8 +236,7 @@ export default function EnhancedTable() {
                       key={row.short}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                      </TableCell>
+                      <TableCell padding="checkbox" />
                       <TableCell
                         component="th"
                         id={labelId}
@@ -273,7 +274,7 @@ export default function EnhancedTable() {
       </Paper>
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label='Сгруппировать'
+        label="Сгруппировать"
       />
     </Box>
   );

@@ -46,7 +46,7 @@ const LoginForm = () => {
         localStorage.setItem('userId', JSON.stringify({ ...request.data }));
         navigate(fromPath);
       } catch (error) {
-        if (error.code === "ERR_NETWORK") {
+        if (error.code === 'ERR_NETWORK') {
           setAuthFailedName(t('forms.errorNetwork'));
           setAuthFailed(true);
         } else {
@@ -106,8 +106,8 @@ const LoginForm = () => {
         )}
         {authFailedName.length > 0 && (
           <Form.Control.Feedback type="invalid">
-          {t('forms.errorNetwork')}
-        </Form.Control.Feedback>
+            {t('forms.errorNetwork')}
+          </Form.Control.Feedback>
         )}
       </Form.Group>
       <Button variant="info" type="submit" className="ms-auto">

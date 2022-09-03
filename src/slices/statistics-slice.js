@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable camelcase */
 import { createAsyncThunk, createSlice, createEntityAdapter } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
@@ -14,21 +16,21 @@ export const fetchUserById = createAsyncThunk(
       },
     });
     return response.data;
-  }
+  },
 );
 
-const normalize = (payload) => {
-  return payload.reduce((acc, statistic) => {
-    const { id, short, target, counter } = statistic;
-    return { ...acc, ...{[id]: {short, target, counter}}};
-  }, {});
-}
+const normalize = (payload) => payload.reduce((acc, statistic) => {
+  const {
+    id, short, target, counter,
+  } = statistic;
+  return { ...acc, ...{ [id]: { short, target, counter } } };
+}, {});
 
 const usersAdapter = createEntityAdapter();
 
 const counterSlice = createSlice({
   name: 'statistics',
-  initialState: usersAdapter.getInitialState({ status: null, error: null, statistics: {}, }),
+  initialState: usersAdapter.getInitialState({ status: null, error: null, statistics: {} }),
   reducers: {
     addSqueeze: (state, action) => {
       const { id, ...data } = action.payload;
@@ -51,7 +53,7 @@ const counterSlice = createSlice({
         state.error = action.error;
       });
   },
-})
+});
 
 export const { addSqueeze } = counterSlice.actions;
 

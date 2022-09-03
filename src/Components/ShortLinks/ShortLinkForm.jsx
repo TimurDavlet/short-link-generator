@@ -1,3 +1,5 @@
+/* eslint-disable quote-props */
+/* eslint-disable camelcase */
 import React, { useState, useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -6,8 +8,8 @@ import {
 } from 'react-bootstrap';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import routes from '../../routes';
 import { useDispatch } from 'react-redux';
+import routes from '../../routes';
 import { addSqueeze } from '../../slices/statistics-slice';
 
 const ShortForm = () => {
@@ -38,17 +40,14 @@ const ShortForm = () => {
         const userId = localStorage.getItem('userId');
         const { access_token } = JSON.parse(userId);
         const options = {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${access_token}` },
-            url: routes.squeeze(link),
-          };
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${access_token}` },
+          url: routes.squeeze(link),
+        };
         const request = await axios(options);
         setSqueezeError('');
-        console.log('запрос короткой ссылки')
-        console.log(request.data)
-        dispatch(addSqueeze(request.data))
+        dispatch(addSqueeze(request.data));
         setShortLink(`${routes.apiPath()}/s/${request.data.short}`);
-        console.log('disp otrabotal')
       } catch (error) {
         if (error.response.status === 422) {
           setSqueezeError(t('forms.squeeze.validation'));
@@ -96,10 +95,19 @@ const ShortForm = () => {
             </Button>
           </Form>
           <div className="text-center p-4">
-            {shortLink.length > 0 && <p className="p-4">{t('forms.squeeze.shortLink')}: {shortLink}</p>}
-            {shortLink.length > 0 && <Button variant="info" type="submit" className="ms-auto" onClick={() => {navigator.clipboard.writeText(shortLink)}}>
+            {shortLink.length > 0 && (
+            <p className="p-4">
+              {t('forms.squeeze.shortLink')}
+              :
+              {' '}
+              {shortLink}
+            </p>
+            )}
+            {shortLink.length > 0 && (
+            <Button variant="info" type="submit" className="ms-auto" onClick={() => { navigator.clipboard.writeText(shortLink); }}>
               {t('forms.squeeze.copy')}
-            </Button>}
+            </Button>
+            )}
           </div>
         </Card.Body>
       </div>
